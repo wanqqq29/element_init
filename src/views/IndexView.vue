@@ -1,8 +1,10 @@
-<template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
-</template>
+<script setup lang="ts"></script>
 
-<style>
-</style>
+<template>
+  <el-row style="text-align: center; user-select: none" class='w-full'>
+    <el-col :span="24">
+      <img src="/img/logo.png" />
+    </el-col>
+    <el-col :span="24" class="text-2xl font-bold">湘西龙山摄影共创平台</el-col>
+  </el-row>
+</template>

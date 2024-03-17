@@ -1,10 +1,15 @@
 <script setup lang='ts'>
 import { ref } from 'vue'
+import { Login } from '@/apis/Fetch'
 
 const submit = ref({
   'username': '',
   'password': ''
 })
+
+const login = () => {
+  Login(submit.value.username, submit.value.password)
+}
 </script>
 
 <template>
@@ -25,9 +30,9 @@ const submit = ref({
           <label>系统账号</label>
           <el-input v-model='submit.username'></el-input>
           <label>密码</label>
-          <el-input v-model='submit.username'></el-input>
+          <el-input v-model='submit.password' type='password'></el-input>
 
-          <el-button class='w-full m-t-5 h-10' color='#2f87f4'>登录</el-button>
+          <el-button class='w-full m-t-5 h-10' color='#2f87f4' @click='login'>登录</el-button>
         </div>
       </div>
     </div>
