@@ -18,11 +18,8 @@ const handleOpen = (key: string) => {
 const authStore = AuthStore()
 
 onMounted(() => {
-  const current_roter = router.currentRoute.path
-  console.log('=>(MainLayout.vue:21) ', router.currentRoute)
-  if (current_roter) {
-    active.value = current_roter
-  }
+  const current_roter = router.currentRoute.value.name
+  active.value = current_roter as string
   authStore.setinfo()
 })
 
@@ -31,9 +28,7 @@ onMounted(() => {
 <template>
   <el-container class='h-screen'>
     <el-aside class='menu w-20 h-full overflow-y-hidden p-2'>
-      <div class='flex justify-start items-center bg-white cursor-pointer' @click='()=>{
-        router.push({name:"index"})
-      }'>
+      <div class='flex justify-start items-center bg-white cursor-pointer' @click='handleOpen("index")'>
         <div class='left'><img src='/public/logo.png' alt='logo' class='w-10'></div>
         <div class='left'><span class='font-size-4 font-black m-l-2'>湘西龙山摄影共创平台</span></div>
       </div>
