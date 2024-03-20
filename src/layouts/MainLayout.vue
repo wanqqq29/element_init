@@ -41,7 +41,10 @@ onMounted(() => {
           <el-menu-item index='task-all' route='task-all'>查看所有任务</el-menu-item>
           <el-menu-item index='task-my' route='task-my'>查看被分配任务</el-menu-item>
           <el-menu-item index='studio' route='studio'>
-            <span>借用影棚</span>
+            <span>全部影棚</span>
+          </el-menu-item>
+          <el-menu-item index='studio-my' route='studio-my'>
+            <span>影棚预约记录</span>
           </el-menu-item>
           <el-menu-item index='equiment' route='equiment'>
             <span>借用设备</span>

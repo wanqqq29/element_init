@@ -21,6 +21,10 @@ const router = createRouter({
           name: 'studio',
           component: () => import('../views/Studio/IndexView.vue')
         }, {
+          path: 'studio-my',
+          name: 'studio-my',
+          component: () => import('../views/Studio/MyList.vue')
+        }, {
           path: 'equiment',
           name: 'equiment',
           component: () => import('../views/Equiment/IndexView.vue')
