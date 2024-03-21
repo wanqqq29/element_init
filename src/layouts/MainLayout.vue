@@ -8,10 +8,10 @@ const router = useRouter()
 
 const active = ref('/')
 
-const handleOpen = (key: string) => {
-  active.value = key
+const handleOpen = (key: any) => {
+  active.value = key.index
   router.push({
-    name: key
+    name: key.index
   })
 }
 
@@ -29,25 +29,27 @@ onMounted(() => {
   <el-container class='h-screen'>
     <el-aside class='menu w-20 h-full overflow-y-hidden p-2'>
       <div class='flex justify-start items-center bg-white cursor-pointer' @click='handleOpen("index")'>
-        <div class='left'><img src='/public/logo.png' alt='logo' class='w-10'></div>
+        <div class='left'><img src='/src/assets/logo.png' alt='logo' class='w-10'></div>
         <div class='left'><span class='font-size-4 font-black m-l-2'>湘西龙山摄影共创平台</span></div>
       </div>
       <div class='flex flex-col font-size-6'>
         <el-menu
           :default-active='active'
-          @open='handleOpen'
           style='border-right: 0 !important;'
         >
-          <el-menu-item index='task-all' route='task-all'>查看所有任务</el-menu-item>
-          <el-menu-item index='task-my' route='task-my'>查看被分配任务</el-menu-item>
-          <el-menu-item index='studio' route='studio'>
+          <el-menu-item @click='handleOpen' index='task-all'>查看所有任务</el-menu-item>
+          <el-menu-item @click='handleOpen' index='task-my'>查看被分配任务</el-menu-item>
+          <el-menu-item @click='handleOpen' index='studio'>
             <span>全部影棚</span>
           </el-menu-item>
-          <el-menu-item index='studio-my' route='studio-my'>
+          <el-menu-item @click='handleOpen' index='studio-my'>
             <span>影棚预约记录</span>
           </el-menu-item>
-          <el-menu-item index='equiment' route='equiment'>
-            <span>借用设备</span>
+          <el-menu-item @click='handleOpen' index='equiment'>
+            <span>设备列表</span>
+          </el-menu-item>
+          <el-menu-item @click='handleOpen' index='equiment-my'>
+            <span>设备借用记录</span>
           </el-menu-item>
         </el-menu>
       </div>

@@ -20,7 +20,7 @@ const login = () => {
           Hi! 你好！👏<br>
           欢迎进入湘西龙山摄影共创平台
         </div>
-        <img src='/public/login/image.png' alt='image' class='w-full' />
+        <img src='/login/image.png?url' alt='image' class='w-full' />
       </div>
       <div class='right h-full w-120'>
         <div class='title'>
