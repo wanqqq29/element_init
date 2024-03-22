@@ -41,7 +41,7 @@ const handleOrderImageSuccess: UploadProps['onSuccess'] = (
   response,
   uploadFile
 ) => {
-  form.value.order_image = response.url
+  form.value.borrow_image = response.url
 }
 const handleFinishImageSuccess: UploadProps['onSuccess'] = (
   response,
@@ -58,7 +58,7 @@ const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
 }
 
 const submit = () => {
-  Fetch('/equipment/order_equipment/', {
+  Fetch('/studio/studio_equipment/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -110,7 +110,7 @@ load()
     <el-form :model='form'>
       <el-form-item label='预约日期'>
         <el-date-picker
-          v-model='form.order_date'
+          v-model='form.borrow_date'
           type='date'
           placeholder='Pick a day'
           format='YYYY-MM-DD'
@@ -118,24 +118,24 @@ load()
         />
       </el-form-item>
       <el-form-item label='预约时间'>
-        <el-select v-model='form.order_time' placeholder='Please select a zone'>
+        <el-select v-model='form.borrow_time' placeholder='Please select a zone'>
           <template v-for='(item,key) in time_options' :key='key'>
             <el-option :label='item.label' :value='item.value' />
           </template>
         </el-select>
       </el-form-item>
       <el-form-item label='描述'>
-        <el-input v-model='form.order_description'></el-input>
+        <el-input v-model='form.borrow_description'></el-input>
       </el-form-item>
       <el-form-item label='初始图片'>
         <el-upload
           class='avatar-uploader'
-          action='http://localhost:8000/api/equipment/upload/'
+          action='http://localhost:8000/api/studio/upload/'
           :show-file-list='false'
           :on-success='handleOrderImageSuccess'
           :before-upload='beforeAvatarUpload'
         >
-          <img v-if='form.order_image' :src='"http://localhost:8000/"+form.order_image' class='avatar' />
+          <img v-if='form.borrow_image' :src='"http://localhost:8000/"+form.borrow_image' class='avatar' />
           <el-icon v-else class='avatar-uploader-icon'>
             <Plus />
           </el-icon>
