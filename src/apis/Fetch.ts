@@ -26,4 +26,8 @@ const Login = (username: string, password: string) => {
   })
 }
 
-export { Fetch, Login }
+const Logout = () => {
+  localStorage.removeItem('token')
+  window.location.href = '/login'
+}
+export { Fetch, Login, Logout }

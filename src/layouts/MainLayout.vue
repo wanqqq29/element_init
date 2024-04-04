@@ -5,7 +5,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import { AuthStore } from '@/stores/Auth'
 import { ElNotification } from 'element-plus'
 import moment from 'moment'
-import { Fetch } from '@/apis/Fetch'
+import { Fetch, Logout } from '@/apis/Fetch'
 
 const router = useRouter()
 
@@ -35,6 +35,7 @@ const readMessage = (id: number) => {
 }
 
 const authStore = AuthStore()
+
 
 
 //新开一个worker 来处理消息通知
@@ -110,6 +111,7 @@ onUnmounted(() => {
         <div class='w-full flex row justify-end'>
           欢迎您：
           <div>{{ authStore.username }}</div>
+          <div class='ml-4 cursor-pointer select-none ' @click='Logout'>登出</div>
         </div>
       </el-header>
       <div class='p-2'>
