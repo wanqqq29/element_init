@@ -33,9 +33,9 @@ const router = createRouter({
           name: 'equiment-my',
           component: () => import('../views/Equiment/MyList.vue')
         }, {
-          path: 'task-all',
-          name: 'task-all',
-          component: () => import('../views/Task/AllTaskView.vue')
+          path: 'self-info',
+          name: 'self-info',
+          component: () => import('../views/Info/SelfInfoView.vue')
         }, {
           path: 'task-my',
           name: 'task-my',

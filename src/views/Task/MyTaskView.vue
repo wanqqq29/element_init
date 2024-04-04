@@ -20,11 +20,24 @@ const load = () => {
   })
 }
 
+
+const memeber = ref([])
+const loadMember = (id: number) => {
+  Fetch(`/task/${id}/member/`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json()).then((data) => {
+    memeber.value = data
+  })
+}
 const dialogDom = ref(false)
 const form = ref({})
 const detail = (info: string) => {
   dialogDom.value = true
   form.value = info
+  loadMember(info.id)
 }
 
 load()
@@ -72,6 +85,15 @@ load()
         <el-input class='h-20 mb-2' type='textarea' v-model='form.task_shoot' disabled></el-input>
       </el-form-item>
     </el-form>
+    <el-table :data='memeber'>
+      <el-table-column
+        label='用户id'
+        prop='id'
+      ></el-table-column>
+      <el-table-column label='姓名' prop='name'></el-table-column>
+      <el-table-column label='性别' prop='sex' :formatter='row=>row.sex?"男":"女"'></el-table-column>
+      <el-table-column label='手机号' prop='phone'></el-table-column>
+    </el-table>
     <template #footer>
       <div class='dialog-footer'>
         <el-button type='primary' @click='dialogDom = false'>

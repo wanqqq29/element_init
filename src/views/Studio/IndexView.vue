@@ -2,7 +2,6 @@
 
 import { Fetch } from '@/apis/Fetch'
 import { ref } from 'vue'
-import moment from 'moment'
 import { Plus } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 import type { UploadProps } from 'element-plus'

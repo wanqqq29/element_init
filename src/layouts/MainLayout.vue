@@ -3,6 +3,9 @@
 import { useRouter } from 'vue-router'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { AuthStore } from '@/stores/Auth'
+import { ElNotification } from 'element-plus'
+import moment from 'moment'
+import { Fetch } from '@/apis/Fetch'
 
 const router = useRouter()
 
@@ -12,6 +15,22 @@ const handleOpen = (key: any) => {
   active.value = key.index
   router.push({
     name: key.index
+  })
+}
+
+const formatTime = (time: any) => {
+  // 解析时间字符串
+  const date = moment.utc(time)
+  // 格式化日期和时间
+  return date.format('YYYY-MM-DD HH:mm:ss')
+}
+
+const readMessage = (id: number) => {
+  Fetch(`/message/${id}/`, {
+    method: 'PUT',
+    header: {
+      'Content-Type': 'application/json'
+    }
   })
 }
 
@@ -25,7 +44,14 @@ const initWorker = () => {
     worker.value = new Worker(new URL('./worker.ts', import.meta.url))
     worker.value.onmessage = (e: any) => {
       // 处理从Worker接收到的数据
-      console.log(e.data)
+      if (e.data) {
+        ElNotification({
+          title: '温馨提示',
+          message: `${formatTime(e.data.created_time)}: ${e.data.content}`,
+          duration: 0,
+          onClose: readMessage(e.data.id)
+        })
+      }
     }
     worker.value.onerror = (error: any) => {
       // 处理Worker错误
@@ -62,7 +88,7 @@ onUnmounted(() => {
           :default-active='active'
           style='border-right: 0 !important;'
         >
-          <el-menu-item @click='handleOpen' index='task-all'>查看所有任务</el-menu-item>
+          <el-menu-item @click='handleOpen' index='self-info'>个人中心</el-menu-item>
           <el-menu-item @click='handleOpen' index='task-my'>查看被分配任务</el-menu-item>
           <el-menu-item @click='handleOpen' index='studio'>
             <span>全部影棚</span>
