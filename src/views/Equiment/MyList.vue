@@ -76,7 +76,7 @@ load()
   <el-table :data='order_list'>
     <el-table-column
       label='借用编号'
-      prop='borrow_id'
+      prop='id'
     ></el-table-column>
     <el-table-column
       label='初始照片'
@@ -89,17 +89,18 @@ load()
     <el-table-column label='借用日期' prop='borrow_date'></el-table-column>
     <el-table-column label='借用时间' prop='borrow_time'></el-table-column>
     <el-table-column label='借用描述' prop='borrow_description'></el-table-column>
-    <el-table-column label='借用状态' prop='borrow_status'>
+    <el-table-column label='借用状态' prop='status'>
       <template #default='scope'>
-        <el-tag v-if='scope.row.borrow_status == -1' type='success'>进行中</el-tag>
-        <el-tag v-if='scope.row.borrow_status == 0' type='success'>未开始</el-tag>
-        <el-tag v-if='scope.row.borrow_status == 1'>已完成</el-tag>
+        <el-tag v-if='scope.row.status == -1' type='success'>进行中</el-tag>
+        <el-tag v-if='scope.row.status == 0' type='success'>未开始</el-tag>
+        <el-tag v-if='scope.row.status == 1'>已完成</el-tag>
+        <el-tag v-if='scope.row.status == 2' type='warning'>超时</el-tag>
       </template>
     </el-table-column>
     <el-table-column label='操作' width='200px'>
       <template #default='scope'>
-        <el-button type='primary' v-if='scope.row.borrow_status==-1'  @click='borrowStudio(scope.row.borrow_id)'>归还</el-button>
-        <el-button type='warning' v-if='scope.row.borrow_status==0' @click='deleteOrder(scope.row.borrow_id)'>撤回</el-button>
+        <el-button type='primary' v-if='scope.row.status==-1'  @click='borrowStudio(scope.row.id)'>归还</el-button>
+        <el-button type='warning' v-if='scope.row.status==0' @click='deleteOrder(scope.row.id)'>撤回</el-button>
       </template>
     </el-table-column>
   </el-table>

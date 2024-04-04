@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 
 import { useRouter } from 'vue-router'
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { AuthStore } from '@/stores/Auth'
 
 const router = useRouter()
@@ -17,10 +17,35 @@ const handleOpen = (key: any) => {
 
 const authStore = AuthStore()
 
+
+//新开一个worker 来处理消息通知
+const worker = ref()
+const initWorker = () => {
+  if (window.Worker) {
+    worker.value = new Worker(new URL('./worker.ts', import.meta.url))
+    worker.value.onmessage = (e: any) => {
+      // 处理从Worker接收到的数据
+      console.log(e.data)
+    }
+    worker.value.onerror = (error: any) => {
+      // 处理Worker错误
+      console.log('Worker error:', error)
+    }
+    worker.value.postMessage({ action: 'getMessage', token: localStorage.getItem('token') })
+  } else {
+    alert('Your browser does not support Web Workers.')
+  }
+}
+initWorker()
+
 onMounted(() => {
   const current_roter = router.currentRoute.value.name
   active.value = current_roter as string
   authStore.setinfo()
+})
+
+onUnmounted(() => {
+  worker.value.terminate()
 })
 
 </script>

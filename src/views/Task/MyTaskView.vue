@@ -34,16 +34,17 @@ load()
   <el-table :data='order_list'>
     <el-table-column
       label='任务ID'
-      prop='task_id'
+      prop='id'
     ></el-table-column>
     <el-table-column label='任务名称' prop='task_name'></el-table-column>
     <el-table-column label='任务描述' prop='task_description'></el-table-column>
     <el-table-column label='任务日期' prop='task_date'></el-table-column>
-    <el-table-column label='任务状态' prop='task_status'>
+    <el-table-column label='任务状态' prop='status'>
       <template #default='scope'>
-        <el-tag v-if='scope.row.task_status == -1' type='success'>进行中</el-tag>
-        <el-tag v-if='scope.row.task_status == 0' type='success'>未开始</el-tag>
-        <el-tag v-if='scope.row.task_status == 1'>已完成</el-tag>
+        <el-tag v-if='scope.row.status == -1' type='success'>进行中</el-tag>
+        <el-tag v-if='scope.row.status == 0' type='success'>未开始</el-tag>
+        <el-tag v-if='scope.row.status == 1'>已完成</el-tag>
+        <el-tag v-if='scope.row.status == 2' type='warning'>超时</el-tag>
       </template>
     </el-table-column>
     <el-table-column label='任务地点' prop='task_studio_name'></el-table-column>

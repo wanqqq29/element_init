@@ -1,5 +1,3 @@
-import { AuthStore } from '@/stores/Auth'
-
 const baseUrl = 'http://localhost:8000/api'
 const Fetch = (path: string, options: RequestInit | any = {}) => {
   const token = localStorage.getItem('token')

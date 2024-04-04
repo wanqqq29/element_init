@@ -78,7 +78,7 @@ load()
   <el-table :data='studio_list'>
     <el-table-column
       label='影棚编号'
-      prop='studio_id'
+      prop='id'
     ></el-table-column>
     <el-table-column
       label='封面'
@@ -92,9 +92,9 @@ load()
     <el-table-column label='地址' prop='studio_address'></el-table-column>
     <el-table-column label='面积' prop='studio_size'></el-table-column>
     <el-table-column label='租金' prop='studio_rent'></el-table-column>
-    <el-table-column label='是否可用' prop='studio_status'>
+    <el-table-column label='是否可用' prop='status'>
       <template #default='scope'>
-        <el-tag v-if='scope.row.studio_status' type='success'>可用</el-tag>
+        <el-tag v-if='scope.row.status' type='success'>可用</el-tag>
         <el-tag v-else type='danger'>不可用</el-tag>
       </template>
     </el-table-column>
@@ -107,7 +107,7 @@ load()
     <el-table-column label='描述' prop='studio_description'></el-table-column>
     <el-table-column label='操作' width='100px'>
       <template #default='scope'>
-        <el-button type='primary' @click='borrowStudio(scope.row.studio_id)'>预约</el-button>
+        <el-button type='primary' @click='borrowStudio(scope.row.id)'>预约</el-button>
       </template>
     </el-table-column>
   </el-table>

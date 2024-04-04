@@ -78,7 +78,7 @@ load()
   <el-table :data='equipment_list'>
     <el-table-column
       label='设备编号'
-      prop='equipment_id'
+      prop='id'
     ></el-table-column>
     <el-table-column
       label='封面'
@@ -91,16 +91,16 @@ load()
     <el-table-column label='设备名称' prop='equipment_name'></el-table-column>
     <el-table-column label='所属影棚' prop='studio_id_id'></el-table-column>
     <el-table-column label='数量' prop='equipment_count'></el-table-column>
-    <el-table-column label='是否可用' prop='equipment_status'>
+    <el-table-column label='是否可用' prop='status'>
       <template #default='scope'>
-        <el-tag v-if='scope.row.equipment_status' type='success'>可用</el-tag>
+        <el-tag v-if='scope.row.status' type='success'>可用</el-tag>
         <el-tag v-else type='danger'>不可用</el-tag>
       </template>
     </el-table-column>
     <el-table-column label='描述' prop='equipment_description'></el-table-column>
     <el-table-column label='操作' width='100px'>
       <template #default='scope'>
-        <el-button type='primary' @click='borrowequipment(scope.row.equipment_id)'>借用</el-button>
+        <el-button type='primary' @click='borrowequipment(scope.row.id)'>借用</el-button>
       </template>
     </el-table-column>
   </el-table>
